@@ -1,22 +1,26 @@
 require 'octokit'
 
 class Gittery
-  def initialize wd
-    @git = Octokit::Client.new
-    @wd = wd
+  attr_reader :base
+
+  def initialize repo, wd, base
+    @git   = Octokit::Client.new
+    @repo  = repo
+    @wd    = wd
+    @base  = base
   end
 
   def branches
     branches = []
-    @git.branches('loose-seal/seal-club').each do |branch|
-      branches << branch
+    @git.branches( @repo ).each do |branch|
+      branches << branch.name
     end
     return branches
   end
 
   def checkout branch
     Dir.chdir @wd do
-      `git fetch -a && git checkout #{branch}`
+      `git fetch -a && git checkout #{branch} && git pull`
     end
   end
 end
