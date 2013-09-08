@@ -20,7 +20,7 @@ class Gittery
 
   def checkout branch
     Dir.chdir @wd do
-      `git fetch -a && git checkout #{branch} && git pull`
+      `git checkout #{branch} && git pull`
     end
   end
 end
