@@ -1,0 +1,4 @@
+<h2>Branches</h2>
+<% @branches.sort.each do |b| %>
+  <p><a href='/checkout/<%= b %>'><%= b %></a></p>
+<% end %>
