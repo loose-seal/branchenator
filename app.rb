@@ -7,8 +7,8 @@ require 'sinatra'
 require 'gittery'
 
 gittery = Gittery.new( 'loose-seal/seal-club',
-                        '/Users/jspc/projects/seal-club', 
-                        'http://localhost:8000' )
+                        ENV['LS_SERVE_FROM'], 
+                        ENV['LS_INT_SITE'] )
 
 get '/' do
   @branches = gittery.branches
